@@ -1,8 +1,7 @@
 ﻿
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using Avalonia.Collections;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -10,8 +9,9 @@ namespace MileageTracker.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-    private readonly AvaloniaList<TripRecord> _records = new();
-    public IReadOnlyList<TripRecord> Records => _records;
+    private readonly ObservableCollection<TripRecord> _records;
+    
+    public ObservableCollection<TripRecord> Records => _records;
 
     [ObservableProperty]
     private DateTime _selectedDate = DateTime.Now;
@@ -33,6 +33,19 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     private TripRecord? _selectedRecord;
+
+    [ObservableProperty]
+    private bool _showFuelFields;
+
+    public MainViewModel()
+    {
+        _records = new ObservableCollection<TripRecord>();
+    }
+
+    partial void OnRecordTypeChanged(RecordType value)
+    {
+        ShowFuelFields = value == RecordType.FuelUp;
+    }
 
     private decimal CalculateMilesDriven()
     {
@@ -69,8 +82,6 @@ public partial class MainViewModel : ViewModelBase
         }
 
         _records.Add(record);
-        
-        // Reset input fields
         ResetFields();
     }
 

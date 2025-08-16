@@ -33,23 +33,23 @@
                                      HorizontalAlignment="Stretch"/>
                     </StackPanel>
 
-                    <StackPanel IsVisible="{Binding RecordType, Converter={x:Static ObjectConverters.Equal}, ConverterParameter=1}">
+                    <StackPanel IsVisible="{Binding ShowFuelFields}">
                         <StackPanel>
                             <TextBlock Text="Gallons"/>
                             <NumericUpDown Value="{Binding Gallons}"
-                                         FormatString="F3"
-                                         Increment="0.001"
-                                         Minimum="0"
-                                         HorizontalAlignment="Stretch"/>
+                                           FormatString="F3"
+                                           Increment="0.001"
+                                           Minimum="0"
+                                           HorizontalAlignment="Stretch"/>
                         </StackPanel>
 
                         <StackPanel>
                             <TextBlock Text="Price per Gallon"/>
                             <NumericUpDown Value="{Binding PricePerGallon}"
-                                         FormatString="C3"
-                                         Increment="0.001"
-                                         Minimum="0"
-                                         HorizontalAlignment="Stretch"/>
+                                           FormatString="C3"
+                                           Increment="0.001"
+                                           Minimum="0"
+                                           HorizontalAlignment="Stretch"/>
                         </StackPanel>
                     </StackPanel>
 
