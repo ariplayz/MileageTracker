@@ -14,16 +14,11 @@
         <StyleInclude Source="Styles/AppDefaultStyles.axaml"></StyleInclude>
     </Application.Styles>
              <Application.Resources>
-                 <SolidColorBrush x:Key="PrimaryBackground">#14172D</SolidColorBrush>
+                 <SolidColorBrush x:Key="PrimaryBackground">#003d31</SolidColorBrush>
                  <SolidColorBrush x:Key="PrimaryForeground">#CFCFCF</SolidColorBrush>
                  <LinearGradientBrush x:Key="PrimaryBackgroundGradient" StartPoint="0%, 0%" EndPoint="100%, 0%">
-                     <GradientStop Offset="0" Color="#111214"></GradientStop>
-                     <GradientStop Offset="1" Color="#151E3E"></GradientStop>
-                 </LinearGradientBrush>
-                 <LinearGradientBrush x:Key="PrimaryNumericUpDownGradient" StartPoint="0%, 0%" EndPoint="0%, 0%">
-                     <GradientStop Offset="0" Color="#111214"></GradientStop>
-                     <GradientStop Offset="1" Color="#151E3E"></GradientStop>
-                     <GradientStop Offset="2" Color="#111214"></GradientStop>
+                     <GradientStop Offset="0" Color="#00899b"></GradientStop>
+                     <GradientStop Offset="1" Color="#003d31"></GradientStop>
                  </LinearGradientBrush>
                  
                  <SolidColorBrush x:Key="PrimaryHoverBackground">#333B5A</SolidColorBrush>

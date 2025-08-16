@@ -6,11 +6,34 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MileageTracker.Views.MainView"
              x:DataType="vm:MainViewModel">
-  <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
-  </Design.DataContext>
-
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <TabControl>
+        <!-- Add New Record Tab -->
+        <TabItem Header="Add Record">
+            <StackPanel Margin="20">
+                <TextBlock Text="Date" Margin="0,0,0,5"/>
+                <DatePicker SelectedDate="{Binding CurrentDate}"/>
+                
+                <TextBlock Text="Odometer Reading" Margin="0,10,0,5"/>
+                <NumericUpDown Value="{Binding OdometerReading}"
+                              FormatString="F1"/>
+                
+                <TextBox Watermark="Description"
+                         Text="{Binding Description}"
+                         Margin="0,10"/>
+                
+                <Button Content="Add Record"
+                        Command="{Binding AddRecordCommand}"
+                        HorizontalAlignment="Left"
+                        Margin="0,20"/>
+            </StackPanel>
+        </TabItem>
+        
+        <!-- View Log Tab -->
+        <TabItem Header="View Log">
+            <DataGrid ItemsSource="{Binding MileageRecords}"
+                      AutoGenerateColumns="True"
+                      IsReadOnly="True">
+            </DataGrid>
+        </TabItem>
+    </TabControl>
 </UserControl>
