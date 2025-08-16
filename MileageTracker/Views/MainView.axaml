@@ -1,39 +1,76 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:MileageTracker.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MileageTracker.Views.MainView"
              x:DataType="vm:MainViewModel">
-    <TabControl>
-        <!-- Add New Record Tab -->
-        <TabItem Header="Add Record">
-            <StackPanel Margin="20">
-                <TextBlock Text="Date" Margin="0,0,0,5"/>
-                <DatePicker SelectedDate="{Binding CurrentDate}"/>
-                
-                <TextBlock Text="Odometer Reading" Margin="0,10,0,5"/>
-                <NumericUpDown Value="{Binding OdometerReading}"
-                              FormatString="F1"/>
-                
-                <TextBox Watermark="Description"
-                         Text="{Binding Description}"
-                         Margin="0,10"/>
-                
-                <Button Content="Add Record"
-                        Command="{Binding AddRecordCommand}"
-                        HorizontalAlignment="Left"
-                        Margin="0,20"/>
-            </StackPanel>
-        </TabItem>
-        
-        <!-- View Log Tab -->
-        <TabItem Header="View Log">
-            <DataGrid ItemsSource="{Binding MileageRecords}"
-                      AutoGenerateColumns="True"
-                      IsReadOnly="True">
-            </DataGrid>
-        </TabItem>
-    </TabControl>
+    <DockPanel>
+        <TabControl>
+            <TabItem Header="Add Record">
+                <StackPanel Margin="20" Spacing="10" MaxWidth="400">
+                    <TextBlock Text="Add New Mileage Record"
+                             FontSize="20"
+                             FontWeight="Bold"/>
+                    
+                    <StackPanel>
+                        <TextBlock Text="Date"/>
+                        <CalendarDatePicker SelectedDate="{Binding SelectedDate}"
+                                          HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="Odometer Reading"/>
+                        <NumericUpDown Value="{Binding Odometer}"
+                                     FormatString="F1"
+                                     Increment="0.1"
+                                     Minimum="0"
+                                     HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="Description"/>
+                        <TextBox Text="{Binding Description}"
+                                Height="60"
+                                AcceptsReturn="True"
+                                TextWrapping="Wrap"
+                                Watermark="Enter description here..."
+                                HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <Button Content="Add Record"
+                            Command="{Binding AddCommand}"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="View Log">
+                <DockPanel Margin="20">
+                    <Button DockPanel.Dock="Top"
+                            Content="Delete Selected"
+                            Command="{Binding DeleteCommand}"
+                            IsEnabled="{Binding SelectedRecord, Converter={x:Static ObjectConverters.IsNotNull}}"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,0,10"/>
+                    
+                    <DataGrid ItemsSource="{Binding Records}"
+                             SelectedItem="{Binding SelectedRecord}"
+                             IsReadOnly="True"
+                             AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date"
+                                              Binding="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}"
+                                              Width="Auto"/>
+                            <DataGridTextColumn Header="Odometer"
+                                              Binding="{Binding OdometerReading, StringFormat=N1}"
+                                              Width="Auto"/>
+                            <DataGridTextColumn Header="Miles Driven"
+                                              Binding="{Binding Mileage, StringFormat=N1}"
+                                              Width="Auto"/>
+                            <DataGridTextColumn Header="Description"
+                                              Binding="{Binding Description}"
+                                              Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </UserControl>

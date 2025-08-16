@@ -1,195 +1,153 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Design.PreviewWith>
-        <Border Padding="20" Background="{DynamicResource PrimaryBackgroundGradient}" Width="200">
-            <!-- Add Controls for Previewer Here -->
-            <StackPanel>
-                <Button Classes="transparent">
-                    <StackPanel Orientation="Horizontal">
-                        <Label Classes="icon" Content="&#xe2c6;"></Label>
-                        <Label Content="Home"></Label>
-                    </StackPanel>
-                </Button>  
-                <TextBlock Classes="bold"></TextBlock>
-            </StackPanel>
-
-            
-        </Border>
-    </Design.PreviewWith>
     
-    <Style Selector="NumericUpDown">
-        <Setter Property="FontSize" Value="30"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
-        <Setter Property="Margin" Value="5 0 0 0"></Setter>
-        <Setter Property="Value" Value="0"></Setter>
-        <Setter Property="Minimum" Value="0"></Setter>
-        <Setter Property="Background" Value="{DynamicResource PrimaryNumericUpDownGradient}"></Setter>
-    </Style>
-    
-    <Style Selector="TextBox">
-        <Setter Property="FontSize" Value="30"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="10 20 0 0"></Setter>
-    </Style>
-    
-    <Style Selector="Label.title">
-        <Setter Property="FontSize" Value="60"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-    </Style>
-    
-    <Style Selector="Label.subtitle">
-        <Setter Property="FontSize" Value="40"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="Margin" Value="55 20 0 0"></Setter>
-    </Style>
-    
-    <Style Selector="Label">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
-        <Setter Property="FontSize" Value="25"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="55 0 0 0"></Setter>
-    </Style>
-    
-    <Style Selector="StackPanel">
-        <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
-        <Setter Property="Margin" Value="0 5 0 5"></Setter>
-    </Style>
-    
-    <Style Selector="Border">
-        <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
-    </Style>
-    
-    <Style Selector="Grid">
-        <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
-    </Style>
-    
-    <Style Selector="TextBlock">
-        <Setter Property="FontFamily" Value="{DynamicResource AkkoPro}"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}"></Setter>
-    </Style>
-    
-    <Style Selector="TextBlock.bold">
-        <Setter Property="FontFamily" Value="{DynamicResource AkkoProBold}"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
-        <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}"></Setter>
-    </Style>
-    
+    <!-- Main Window Style -->
     <Style Selector="Window">
-        <Setter Property="FontFamily" Value="{DynamicResource AkkoPro}"></Setter>
+        <Setter Property="Background" Value="{DynamicResource PrimaryBackgroundGradient}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource AkkoPro}"/>
     </Style>
-    
-    <Style Selector="Button">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"></Setter>
-        <Setter Property="FontSize" Value="30"></Setter>
-        <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"></Setter>
-        <Setter Property="CornerRadius" Value="7"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="0 0 0 0"></Setter>
+
+    <!-- Tab Control -->
+    <Style Selector="TabControl">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
     </Style>
-    
-    <Style Selector="Label.icon">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"></Setter>
-        <Setter Property="Padding" Value="0 4 5 0"></Setter>
+
+    <!-- Tab Items -->
+    <Style Selector="TabItem">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Margin" Value="0 0 2 0"/>
+        <Setter Property="Padding" Value="20 12"/>
+        <Setter Property="Height" Value="45"/>
     </Style>
-    
-    <Style Selector="Button.icon">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"></Setter>
+
+    <Style Selector="TabItem:selected">
+        <Setter Property="Background" Value="{DynamicResource AccentColor}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
     </Style>
-    
-    <Style Selector="Label.icononly">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"></Setter>
-        <Setter Property="Padding" Value="0 0 0 0"></Setter>
-    </Style>        
-    
-    <Style Selector="Button.icononly">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"></Setter>
-        <Setter Property="Padding" Value="0 0 0 0"></Setter>
-    </Style>    
-    
-    <Style Selector="Label.icononlyfill">
-        <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
-        <Setter Property="Padding" Value="0 0 0 0"></Setter>
-    </Style>    
-    
-    <Style Selector="Button.icononlyfill">
-        <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
-        <Setter Property="Padding" Value="0 0 0 0"></Setter>
+
+    <!-- Title TextBlock -->
+    <Style Selector="TextBlock.title">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
+        <Setter Property="Margin" Value="0 0 0 10"/>
     </Style>
-    
-    <Style Selector="Button.transparent Label.icononly">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"></Setter>
-        <Setter Property="Padding" Value="0 0 0 0"></Setter>
-    </Style>    
-    
-    <Style Selector="Button.transparent Label.icononlyfill">
-        <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
-        <Setter Property="Padding" Value="0 0 0 0"></Setter>
+
+    <!-- Label TextBlock -->
+    <Style Selector="TextBlock.label">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
+        <Setter Property="Margin" Value="0 0 0 4"/>
     </Style>
-    
-    <Style Selector="Button.transparent">
-        <Setter Property="Background" Value="Transparent"></Setter>
+
+    <!-- DatePicker -->
+    <Style Selector="DatePicker">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentColor}"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="0 0 0 10"/>
     </Style>
-    
-    <Style Selector="Button.transparent Label.icon">
-        <Setter Property="FontFamily" Value="{DynamicResource Phosphor}"></Setter>
-    </Style>    
-    
-    <Style Selector="Button.transparent Label.iconfill">
-        <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
+
+    <!-- NumericUpDown -->
+    <Style Selector="NumericUpDown">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentColor}"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="0 0 0 10"/>
+        <Setter Property="MinWidth" Value="200"/>
     </Style>
-    
-    <Style Selector="Label.iconfill">
-        <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
-        <Setter Property="Padding" Value="0 3 5 0"></Setter>
+
+    <!-- TextBox -->
+    <Style Selector="TextBox">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentColor}"/>
+        <Setter Property="MinHeight" Value="40"/>
+        <Setter Property="Padding" Value="8 6"/>
+        <Setter Property="Margin" Value="0 0 0 10"/>
     </Style>
-    
-    <Style Selector="Button.iconfill">
-        <Setter Property="FontFamily" Value="{DynamicResource PhosphorFill}"></Setter>
-        <Setter Property="Padding" Value="0 3 5 0"></Setter>
+
+    <!-- Primary Button -->
+    <Style Selector="Button.primary">
+        <Setter Property="Background" Value="{DynamicResource AccentColor}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="24 12"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="MinWidth" Value="120"/>
+        <Setter Property="Height" Value="40"/>
     </Style>
-    
-    <Style Selector="Button /template/ ContentPresenter">
-        <Setter Property="RenderTransform" Value="scale(1)"></Setter>
+
+    <!-- Delete Button -->
+    <Style Selector="Button.delete">
+        <Setter Property="Background" Value="#800000"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="24 12"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="MinWidth" Value="120"/>
+        <Setter Property="Height" Value="40"/>
+    </Style>
+
+    <!-- Button Hover Effects -->
+    <Style Selector="Button:pointerover /template/ ContentPresenter">
+        <Setter Property="RenderTransform" Value="scale(1.02)"/>
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition Property="Background" Duration="0:0:0.1"></BrushTransition>
-                <BrushTransition Property="Foreground" Duration="0:0:0.1"></BrushTransition>
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1"></TransformOperationsTransition>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
             </Transitions>
         </Setter>
     </Style>
-    
-    <Style Selector="Button:pointerover /template/ ContentPresenter">
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHoverForeground}"></Setter>
-        <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}"></Setter>
-        <Setter Property="RenderTransform" Value="scale(1.05)"></Setter>
+
+    <!-- DataGrid -->
+    <Style Selector="DataGrid">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryForeground}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentColor}"/>
+        <Setter Property="GridLinesVisibility" Value="All"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource PrimaryBackground}"/>
+        <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource PrimaryBackground}"/>
     </Style>
-    
-    <Style Selector="Button.transparent:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryHoverForeground}"></Setter>
-        <Setter Property="RenderTransform" Value="scale(1.1)"></Setter>
+
+    <Style Selector="DataGridColumnHeader">
+        <Setter Property="Background" Value="{DynamicResource AccentColor}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryBackground}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="MinHeight" Value="40"/>
     </Style>
-    
-    <Style Selector="Label.mono">
-        <Setter Property="FontFamily" Value="{DynamicResource JetBrainsMono}"></Setter>
+
+    <Style Selector="DataGridRow">
+        <Setter Property="Background" Value="Transparent"/>
     </Style>
-    
-    <Style Selector="Button.mono">
-        <Setter Property="FontFamily" Value="{DynamicResource JetBrainsMono}"></Setter>
+
+    <!-- Alternating Row Style -->
+    <Style Selector="DataGridRow:nth-child(2n)">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBackground}"/>
     </Style>
-    
-    <Style Selector="TextBlock.mono">
-        <Setter Property="FontFamily" Value="{DynamicResource JetBrainsMono}"></Setter>
+
+    <Style Selector="DataGridRow:selected">
+        <Setter Property="Background" Value="{DynamicResource PrimaryHoverBackground}"/>
     </Style>
-    
+
+    <Style Selector="DataGridCell">
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="MinHeight" Value="40"/>
+    </Style>
+
+    <!-- Container Border -->
+    <Style Selector="Border.container">
+        <Setter Property="Background" Value="{DynamicResource SecondaryBackground}"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Padding" Value="20"/>
+    </Style>
 </Styles>

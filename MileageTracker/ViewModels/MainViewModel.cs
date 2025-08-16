@@ -1,41 +1,58 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MileageTracker.ViewModels;
-using MileageTracker;
-using System.Collections.ObjectModel;
+﻿using Avalonia.Collections;
 using System;
+using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace MileageTracker.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
+    public AvaloniaList<MileageRecord> Records { get; } = new();
+    
     [ObservableProperty]
-    private ObservableCollection<MileageRecord> _mileageRecords = new();
-
+    private DateTime _selectedDate = DateTime.Now;
+    
     [ObservableProperty]
-    private DateTime _currentDate = DateTime.Now;
-
-    [ObservableProperty]
-    private decimal _odometerReading;
-
+    private decimal _odometer;
+    
     [ObservableProperty]
     private string _description = string.Empty;
+    
+    [ObservableProperty]
+    private MileageRecord? _selectedRecord;
 
     [RelayCommand]
-    private void AddRecord()
+    private void Add()
     {
+        if (Odometer <= 0) return;
+
+        var lastReading = Records.Any() ? Records.Max(x => x.OdometerReading) : 0;
+        var milesDriven = Odometer - lastReading;
+
         var record = new MileageRecord
         {
-            Date = CurrentDate,
-            OdometerReading = OdometerReading,
+            Date = SelectedDate,
+            OdometerReading = Odometer,
             Description = Description,
-            Mileage = OdometerReading // You might want to calculate the difference from the previous reading
+            Mileage = milesDriven
         };
 
-        MileageRecords.Add(record);
-        
-        // Clear the input fields
+        Records.Add(record);
+
+        // Reset fields
         Description = string.Empty;
-        OdometerReading = 0;
+        Odometer = 0;
+        SelectedDate = DateTime.Now;
+    }
+
+    [RelayCommand]
+    private void Delete()
+    {
+        if (SelectedRecord != null)
+        {
+            Records.Remove(SelectedRecord);
+            SelectedRecord = null;
+        }
     }
 }
