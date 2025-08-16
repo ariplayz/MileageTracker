@@ -1,16 +1,23 @@
+
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:MileageTracker.ViewModels"
              x:Class="MileageTracker.Views.MainView"
              x:DataType="vm:MainViewModel">
-    <DockPanel>
-        <TabControl>
-            <TabItem Header="Add Record">
+    <TabControl>
+        <TabItem Header="Add Record">
+            <ScrollViewer>
                 <StackPanel Margin="20" Spacing="10" MaxWidth="400">
-                    <TextBlock Text="Add New Mileage Record"
+                    <TextBlock Text="Add New Record"
                              FontSize="20"
                              FontWeight="Bold"/>
-                    
+
+                    <ComboBox HorizontalAlignment="Stretch"
+                            SelectedIndex="{Binding RecordType}">
+                        <ComboBoxItem>Mileage Only</ComboBoxItem>
+                        <ComboBoxItem>Fuel Up</ComboBoxItem>
+                    </ComboBox>
+
                     <StackPanel>
                         <TextBlock Text="Date"/>
                         <CalendarDatePicker SelectedDate="{Binding SelectedDate}"
@@ -26,6 +33,26 @@
                                      HorizontalAlignment="Stretch"/>
                     </StackPanel>
 
+                    <StackPanel IsVisible="{Binding RecordType, Converter={x:Static ObjectConverters.Equal}, ConverterParameter=1}">
+                        <StackPanel>
+                            <TextBlock Text="Gallons"/>
+                            <NumericUpDown Value="{Binding Gallons}"
+                                         FormatString="F3"
+                                         Increment="0.001"
+                                         Minimum="0"
+                                         HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBlock Text="Price per Gallon"/>
+                            <NumericUpDown Value="{Binding PricePerGallon}"
+                                         FormatString="C3"
+                                         Increment="0.001"
+                                         Minimum="0"
+                                         HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                    </StackPanel>
+
                     <StackPanel>
                         <TextBlock Text="Description"/>
                         <TextBox Text="{Binding Description}"
@@ -37,40 +64,53 @@
                     </StackPanel>
 
                     <Button Content="Add Record"
-                            Command="{Binding AddCommand}"/>
+                            Command="{Binding AddCommand}"
+                            HorizontalAlignment="Stretch"/>
                 </StackPanel>
-            </TabItem>
+            </ScrollViewer>
+        </TabItem>
 
-            <TabItem Header="View Log">
-                <DockPanel Margin="20">
-                    <Button DockPanel.Dock="Top"
-                            Content="Delete Selected"
-                            Command="{Binding DeleteCommand}"
-                            IsEnabled="{Binding SelectedRecord, Converter={x:Static ObjectConverters.IsNotNull}}"
-                            HorizontalAlignment="Right"
-                            Margin="0,0,0,10"/>
-                    
-                    <DataGrid ItemsSource="{Binding Records}"
-                             SelectedItem="{Binding SelectedRecord}"
-                             IsReadOnly="True"
-                             AutoGenerateColumns="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Date"
-                                              Binding="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}"
-                                              Width="Auto"/>
-                            <DataGridTextColumn Header="Odometer"
-                                              Binding="{Binding OdometerReading, StringFormat=N1}"
-                                              Width="Auto"/>
-                            <DataGridTextColumn Header="Miles Driven"
-                                              Binding="{Binding Mileage, StringFormat=N1}"
-                                              Width="Auto"/>
-                            <DataGridTextColumn Header="Description"
-                                              Binding="{Binding Description}"
-                                              Width="*"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </DockPanel>
-            </TabItem>
-        </TabControl>
-    </DockPanel>
+        <TabItem Header="View Log">
+            <DockPanel Margin="20">
+                <Button DockPanel.Dock="Top"
+                        Content="Delete Selected"
+                        Command="{Binding DeleteCommand}"
+                        IsEnabled="{Binding SelectedRecord, Converter={x:Static ObjectConverters.IsNotNull}}"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,0,10"/>
+
+                <DataGrid ItemsSource="{Binding Records}"
+                         SelectedItem="{Binding SelectedRecord}"
+                         IsReadOnly="True"
+                         AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Date"
+                                          Binding="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}"
+                                          Width="Auto"/>
+                        <DataGridTextColumn Header="Odometer"
+                                          Binding="{Binding OdometerReading, StringFormat=N1}"
+                                          Width="Auto"/>
+                        <DataGridTextColumn Header="Miles"
+                                          Binding="{Binding MilesDriven, StringFormat=N1}"
+                                          Width="Auto"/>
+                        <DataGridTextColumn Header="Fuel (Gal)"
+                                          Binding="{Binding Gallons, StringFormat=N3}"
+                                          Width="Auto"/>
+                        <DataGridTextColumn Header="$/Gal"
+                                          Binding="{Binding PricePerGallon, StringFormat=C3}"
+                                          Width="Auto"/>
+                        <DataGridTextColumn Header="Total"
+                                          Binding="{Binding TotalCost, StringFormat=C2}"
+                                          Width="Auto"/>
+                        <DataGridTextColumn Header="MPG"
+                                          Binding="{Binding MPG, StringFormat=N1}"
+                                          Width="Auto"/>
+                        <DataGridTextColumn Header="Description"
+                                          Binding="{Binding Description}"
+                                          Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </TabItem>
+    </TabControl>
 </UserControl>
