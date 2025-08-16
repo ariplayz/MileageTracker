@@ -1,0 +1,24 @@
+Cert Instructions:
+
+https://codingflamingo.com/blog/how-to-code-sign-and-notarize-net-console-app-for-mac
+
+
+Make .p12 in Keychain Manager on Andrew Cummings account
+Password for .p12: 1MonKee!!
+
+make base64 with :
+
+base64 -i Certificates.p12 -o Certificates.base64
+
+Sign .app with:
+
+codesign --deep --force --verify --verbose --sign "Developer ID Application: Andrew Cummings (XLA5QQ65S8)" bin/osx-x64/PointsSlip.app
+
+
+Remove signature with:
+
+codesign --remove-signature bin/osx-x64/PointsSlip.app
+
+verify signature with:
+
+codesign -vvv --deep --strict --verbose bin/osx-x64/PointsSlip.app
