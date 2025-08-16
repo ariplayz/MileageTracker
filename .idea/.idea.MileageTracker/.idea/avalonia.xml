@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="MileageTracker/Views/MainView.axaml" value="MileageTracker.Browser/MileageTracker.Browser.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
